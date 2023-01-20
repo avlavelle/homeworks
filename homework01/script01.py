@@ -10,4 +10,7 @@ with open('/home/avlav/words', 'r') as f:
 
 words.sort(key = len, reverse = True)
 
-print(words[:5])
+#print(words[:5])
+
+for i in range(5):
+    print(words[i])
