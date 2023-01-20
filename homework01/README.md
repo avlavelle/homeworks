@@ -13,4 +13,4 @@ Imports the names module and prints out five names that are exactly eight charac
 
 script03.py
 Defines a function that returns the length, excluding spaces, of a given name. 
-Then, prints five unique names from the imported name module followed by the length from the defined function. 
+Then, prints five unique names from the imported names module followed by the length from the defined function. 
