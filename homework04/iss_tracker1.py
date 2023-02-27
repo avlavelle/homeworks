@@ -63,31 +63,34 @@ def get_epochs() -> list:
         sol.append(epoch['EPOCH'])
     return sol
 
-@app.route('/epochs/<int:epoch>', methods = ['GET'])
-def get_vector(epoch: int) -> dict:
+@app.route('/epochs/<string:epoch>', methods = ['GET'])
+def get_vector(epoch: str) -> dict:
     """
     A route that allows the users to return the state vectors for a specific Epoch
     in the data set.
 
     Args:
-        epoch (int): The specified Epoch.
+        epoch (str): The specified Epoch.
 
     Returns:
-        (dict): Dictionary with the state vectors for the specified Epoch.
+        item (dict): Dictionary with the state vectors for the specified Epoch.
     """
 
     data = get_data()
     epochs = data['ndm']['oem']['body']['segment']['data']['stateVector']
-    return epochs[epoch]
+    for item in epochs:
+        if item['EPOCH'] == epoch:
+            return item
 
-@app.route('/epochs/<int:epoch>/speed', methods = ['GET'])
-def get_speed(epoch: int) -> dict:
+
+@app.route('/epochs/<string:epoch>/speed', methods = ['GET'])
+def get_speed(epoch: str) -> dict:
     """
     A route that allows the users to return the instantaneous speed for a specific 
     Epoch.
 
     Args:
-        epoch (int): The specificed Epoch.
+        epoch (str): The specificed Epoch.
 
     Returns:
         speed (dict): Dictionary with the instantaneous speed of the Epoch.
@@ -95,12 +98,16 @@ def get_speed(epoch: int) -> dict:
 
     data = get_data()
     epochs = data['ndm']['oem']['body']['segment']['data']['stateVector']
-    xdot = float(epochs[epoch]['X_DOT']['#text'])
-    ydot = float(epochs[epoch]['Y_DOT']['#text'])
-    zdot = float(epochs[epoch]['Z_DOT']['#text'])
+    for item in epochs:
+        if item['EPOCH'] == epoch:
+            xdot = float(item['X_DOT']['#text'])
+            ydot = float(item['Y_DOT']['#text'])
+            zdot = float(item['Z_DOT']['#text'])
+
     speed = math.sqrt(xdot**2+ydot**2+zdot**2)
     return {'speed': str(speed) + ' km/s'}
-
+    
+    
 if __name__ == '__main__':
     app.run(debug=True, host = '0.0.0.0')
 
