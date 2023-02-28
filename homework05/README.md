@@ -1,4 +1,4 @@
-# Containerizing Querying and Returning ISS Trajectory Data
+# Containerizing the Querying and Returning ISS Trajectory Data
 
 This project is compiled of one script that builds a Flask application and provides four different routes to query and return different information from the ISS Trajectory Data, as well as a Dockerfile that allows any user to pull the image and run an instance of the image into a container on their personal machine.
 
