@@ -10,7 +10,7 @@ The HGNC data is loaded in from this link, https://ftp.ebi.ac.uk/pub/databases/g
 
 ## Flask App and Its Routes
 
-The Flask application contains a function that loads the data into the Redis database and different routes that return all of the information, only hgnc\id's, or all of the information about a specific hgnc\_id. There is also a route that clears the data from the database.
+The Flask application contains a function that loads the data into the Redis database and different routes that return all of the information, only hgnc\_id's, or all of the information about a specific hgnc\_id. There is also a route that clears the data from the database.
 
 ## Pulling the Image and Running the App
 
